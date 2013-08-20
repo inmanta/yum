@@ -1,0 +1,6 @@
+[{{ name | cm("repo_name", "file") }}]
+name = {{ name | cm("repo_name", "file") }}
+enabled = {{ enabled | int | cm("repo_enabled", "host") }}
+gpgcheck = {{ gpgcheck | int | cm("repo_gpgcheck", "host") }}
+baseurl = {{ baseurl | cm("repo_url", "external ref") }}
+
