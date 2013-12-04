@@ -21,7 +21,7 @@ from Imp.export import dependency_manager
 from Imp.resources import Resource
 
 @dependency_manager
-def repo_before_package(model, resources):
+def repo_before_package(config_model, resources):
     """
         If a yum repo is defined on a host, then make all package on that host depend on that repo
     """
