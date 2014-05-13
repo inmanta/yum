@@ -31,7 +31,7 @@ typedef Repository as YumRepository(gpgcheck = false, enabled = true, mode = 644
 
 implementation redhatRepo for YumRepository:
     self.path = "/etc/yum.repos.d/{{ name }}.repo"
-    self.content = template("yum/repo.tmpl")
+    self.content = std::template("yum/repo.tmpl")
 end
 
 implement YumRepository using redhatRepo when host.os is "redhat"
