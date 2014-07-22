@@ -19,7 +19,7 @@
 
 entity YumRepository extends std::File:
     """
-        A yum repositoy 
+        A yum repositoy
     """
     string name
     bool gpgcheck
@@ -34,7 +34,7 @@ implementation redhatRepo for YumRepository:
     self.content = std::template("yum/repo.tmpl")
 end
 
-implement YumRepository using redhatRepo when host.os is "redhat"
+implement YumRepository using redhatRepo when std::familyof(host.os, "redhat")
 
 # YumRepository(host) before std::Package(host)
 
