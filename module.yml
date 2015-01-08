@@ -1,7 +1,6 @@
-name: yum
-version: 0.2
-source: git@github.com:bartv/imp-yum
-license: Apache 2.0
 author: Bart Vanbrabant <bart.vanbrabant@cs.kuleuven.be>
-requires:
-    std: git@github.com:bartv/imp-std, ">= 0.3"
+license: Apache 2.0
+name: yum
+requires: {std: 'git@github.com:bartv/imp-std, ">= 0.3"'}
+source: git@github.com:bartv/imp-yum
+version: 0.2.1
