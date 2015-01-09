@@ -16,8 +16,8 @@
     Contect: bart@impera.io
 """
 
-from Imp.export import dependency_manager
-from Imp.resources import Resource
+from impera.export import dependency_manager
+from impera.resources import Resource
 
 @dependency_manager
 def repo_before_package(config_model, resources):

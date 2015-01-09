@@ -3,4 +3,4 @@ license: Apache 2.0
 name: yum
 requires: {std: 'git@github.com:bartv/imp-std, ">= 0.3"'}
 source: git@github.com:bartv/imp-yum
-version: 0.2.1
+version: 0.2.2
