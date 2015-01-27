@@ -1,6 +1,7 @@
-author: Bart Vanbrabant <bart.vanbrabant@cs.kuleuven.be>
+author: Bart Vanbrabant <bart@impera.io>
 license: Apache 2.0
 name: yum
-requires: {std: 'git@github.com:bartv/imp-std, ">= 0.3"'}
-source: git@github.com:bartv/imp-yum
+source: git@github.com:impera-io/yum
 version: 0.2.2
+requires: 
+    std: git@github.com:impera-io/yum, ">= 0.3"
