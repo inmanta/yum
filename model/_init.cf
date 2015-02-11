@@ -16,24 +16,25 @@
     Contact: bart@impera.io
 """
 
-entity YumRepository extends std::File:
+entity Repository extends std::File:
     """
         A yum repositoy
     """
     string name
-    bool gpgcheck
-    bool enabled
+    bool gpgcheck=false
+    bool enabled=true 
     string baseurl
+    string gpgkey=""
 end
 
-typedef Repository as YumRepository(gpgcheck = false, enabled = true, mode = 644, owner = "root", group = "root")
+implementation redhatRepo for Repository:
+    self.mode = 644
+    self.owner = "root"
+    self.group = "root"
 
-implementation redhatRepo for YumRepository:
     self.path = "/etc/yum.repos.d/{{ name }}.repo"
     self.content = std::template("yum/repo.tmpl")
 end
 
-implement YumRepository using redhatRepo when std::familyof(host.os, "redhat")
-
-# YumRepository(host) before std::Package(host)
+implement Repository using redhatRepo when std::familyof(host.os, "redhat")
 
