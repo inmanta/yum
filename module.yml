@@ -1,7 +1,7 @@
 author: Bart Vanbrabant <bart@impera.io>
 license: Apache 2.0
 name: yum
-source: git@github.com:impera-io/yum
-version: 0.2.5
+source: git@git.impera.io:modules/yum
+version: 0.2.6
 requires:
-    std: git@github.com:impera-io/std, ">= 0.3"
+    std: git@git.impera.io:modules/std, ">= 0.3"
