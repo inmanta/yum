@@ -25,6 +25,7 @@ entity Repository extends std::File:
     bool enabled=true 
     string baseurl
     string gpgkey=""
+    number metadata_expire=7200
 end
 
 implementation redhatRepo for Repository:
