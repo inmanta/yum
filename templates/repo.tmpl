@@ -1,7 +1,7 @@
 [{{ name }}]
 name = {{ name }}
-enabled = {{ enabled }}
-gpgcheck = {{ gpgcheck }}
+enabled={% if enabled %}1{%else%}0{%endif%}
+gpgcheck={% if gpgcheck %}1{%else%}0{%endif%}
 baseurl = {{ baseurl }}
 gpgkey = {{ gpgkey }}
 metadata_expire = {{ metadata_expire }}
