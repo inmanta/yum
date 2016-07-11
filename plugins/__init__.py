@@ -16,27 +16,3 @@
     Contact: code@inmanta.com
 """
 
-from inmanta.export import dependency_manager
-from inmanta.resources import Resource
-
-@dependency_manager
-def repo_before_package(config_model, resources):
-    """
-        If a yum repo is defined on a host, then make all package on that host depend on that repo
-    """
-    # loop over all resources to find files that where created from an instance of
-    # yum::YumRepository
-    for _id, resource in resources.items():
-        res_class = resource.model.__class__
-        if resource.model.__module__ == "yum" and res_class.__name__ == "YumRepository":
-            model = resource.model
-            host = model.host
-
-            # now find all packages on the same host as the yum repo file and add the repo as a
-            # dependency if it is not already a dependency
-            for package in host.packages:
-                pkg_res = Resource.get_resource(package)
-                if pkg_res is not None:
-                    if _id not in pkg_res.requires:
-                        pkg_res.requires.add(_id)
-
