@@ -16,7 +16,7 @@
     Contact: code@inmanta.com
 """
 
-entity Repository extends std::File:
+entity Repository:
     """
         A yum repositoy
     """
@@ -28,13 +28,11 @@ entity Repository extends std::File:
     number metadata_expire=7200
 end
 
-implementation redhatRepo for Repository:
-    self.mode = 644
-    self.owner = "root"
-    self.group = "root"
+std::Host host [1] -- [0:] Repository repos
 
-    self.path = "/etc/yum.repos.d/{{ name }}.repo"
-    self.content = std::template("yum/repo.tmpl")
+implementation redhatRepo for Repository:
+    myfile = std::File(mode = 644, owner = "root", group = "root", path = "/etc/yum.repos.d/{{ name }}.repo", content = std::template("yum/repo.tmpl"), host=host)
+    self.requires = myfile
 end
 
 implement Repository using redhatRepo when std::familyof(host.os, "redhat")
