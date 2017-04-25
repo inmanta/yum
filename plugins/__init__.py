@@ -15,4 +15,23 @@
 
     Contact: code@inmanta.com
 """
+from collections import defaultdict
+from inmanta.export import dependency_manager
 
+@dependency_manager
+def yum_dependencies(config_model, resource_model):
+    repo_files = defaultdict(list)
+    pkgs = defaultdict(list)
+
+    for _, resource in resource_model.items():
+        if resource.id.entity_type == "std::File" and resource.path.startswith("/etc/yum.repos.d"):
+            repo_files[resource.id.agent_name].append(resource)
+
+        elif resource.id.entity_type == "std::Package":
+            pkgs[resource.id.agent_name].append(resource)
+
+    # they require the tenant to exist
+    for hostname, pkgs in pkgs.items():
+        for pkg in pkgs:
+            for repo in repo_files[hostname]:
+                pkg.requires.add(repo)
