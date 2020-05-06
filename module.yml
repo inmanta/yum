@@ -1,6 +1,6 @@
 author: Inmanta <code@inmanta.com>
 license: Apache 2.0
 name: yum
-version: 0.5.1
+version: 0.5.2.dev1588775344
 requires:
 - std
