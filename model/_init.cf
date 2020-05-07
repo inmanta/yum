@@ -28,7 +28,7 @@ entity Repository:
     number metadata_expire=7200
 end
 
-std::Host host [1] -- [0:] Repository repos
+std::Host.repos [0:] -- Repository.host [1]
 
 implementation redhatRepo for Repository:
     repo = std::File(mode=644, owner="root", group="root", path="/etc/yum.repos.d/{{ name }}.repo",
