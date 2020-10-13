@@ -1,5 +1,5 @@
 """
-    Copyright 2017 Inmanta
+    Copyright 2020 Inmanta
 
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.
@@ -22,17 +22,25 @@ entity Repository:
     """
     string name
     bool gpgcheck=false
-    bool enabled=true 
+    bool enabled=true
     string baseurl
     string gpgkey=""
     number metadata_expire=7200
+    bool skip_if_unavailable=false
 end
 
 std::Host.repos [0:] -- Repository.host [1]
 
 implementation redhatRepo for Repository:
-    repo = std::File(mode=644, owner="root", group="root", path="/etc/yum.repos.d/{{ name }}.repo",
-                     content=std::template("yum/repo.tmpl"), host=host, provides=self.provides)
+    repo = std::File(
+        mode=644,
+        owner="root",
+        group="root",
+        path="/etc/yum.repos.d/{{ name }}.repo",
+        content=std::template("yum/repo.tmpl"),
+        host=host,
+        provides=self.provides
+    )
 end
 
 implement Repository using redhatRepo when std::familyof(host.os, "redhat")
