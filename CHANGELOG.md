@@ -1,5 +1,9 @@
+# V0.6.5
+- Use conditional requirement for inmanta-dev-dependencies package
+
 # V0.6.2
 - Update inmanta-dev-dependencies package
+
 # V0.6.1
 -  Use inmanta-dev-dependencies package
 
