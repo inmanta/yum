@@ -1,3 +1,6 @@
+# V0.6.7
+- Add pytest.ini file and set asyncio_mode to auto
+
 # V0.6.5
 - Use conditional requirement for inmanta-dev-dependencies package
 
