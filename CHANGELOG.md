@@ -1,5 +1,5 @@
 # V0.7.0
-- Add support to set the mirrorlist option in a yum repo file.
+- Add support to set the mirrorlist and metalink options in a yum repo file.
 
 # V0.6.8
 - Remove pytest.ini and move its logic to pyproject.toml

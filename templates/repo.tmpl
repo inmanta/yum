@@ -1,9 +1,16 @@
 [{{ name }}]
 name = {{ name }}
-enabled={% if enabled %}1{%else%}0{%endif%}
-gpgcheck={% if gpgcheck %}1{%else%}0{%endif%}
+enabled={% if enabled %}1{% else %}0{% endif %}
+gpgcheck={% if gpgcheck %}1{% else %}0{% endif %}
+{% if baseurl is not none -%}
 baseurl = {{ baseurl }}
+{% endif -%}
+{% if mirrorlist is not none -%}
 mirrorlist = {{ mirrorlist }}
+{% endif -%}
+{% if metalink is not none -%}
+metalink = {{ metalink }}
+{% endif -%}
 gpgkey = {{ gpgkey }}
 metadata_expire = {{ metadata_expire }}
-skip_if_unavailable={% if skip_if_unavailable %}1{%else%}0{%endif%}
+skip_if_unavailable={% if skip_if_unavailable %}1{% else %}0{% endif %}
