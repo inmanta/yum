@@ -16,8 +16,8 @@
     Contact: code@inmanta.com
 """
 import pytest
-from pytest_inmanta.plugin import Project
 from inmanta.ast import CompilerException
+from pytest_inmanta.plugin import Project
 
 
 def test_module(project: Project) -> None:
@@ -30,18 +30,23 @@ def test_input_validation_on_repository(project: Project):
     a Repository is set to null.
     """
     with pytest.raises(CompilerException) as excinfo:
-        project.compile("""
+        project.compile(
+            """
     import yum
     yum::Repository(name="test")
-        """)
-    assert "baseurl and mirrorlist cannot be null at the same time." in str(excinfo.value)
+        """
+        )
+    assert "baseurl and mirrorlist cannot be null at the same time." in str(
+        excinfo.value
+    )
 
 
 def test_repository(project: Project):
     """
     Basic test for the Repository entity.
     """
-    project.compile("""
+    project.compile(
+        """
 import std
 import yum
 import redhat
@@ -57,7 +62,8 @@ yum::Repository(
     metadata_expire=7200,
     skip_if_unavailable=false,
 )
-    """)
+    """
+    )
 
     file_instances = project.get_instances(fortype="std::File")
     assert len(file_instances) == 1
