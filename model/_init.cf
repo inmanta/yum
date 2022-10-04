@@ -23,13 +23,21 @@ entity Repository:
     string name
     bool gpgcheck=false
     bool enabled=true
-    string baseurl
+    string? baseurl=null
+    string? mirrorlist=null
     string gpgkey=""
     number metadata_expire=7200
     bool skip_if_unavailable=false
 end
 
 std::Host.repos [0:] -- Repository.host [1]
+
+implementation validateInput for Repository:
+   std::assert(
+       expression=self.baseurl != null or self.mirrorlist != null,
+       message="baseurl and mirrorlist cannot be null at the same time.",
+   )
+end
 
 implementation redhatRepo for Repository:
     repo = std::File(
@@ -43,5 +51,6 @@ implementation redhatRepo for Repository:
     )
 end
 
+implement Repository using validateInput
 implement Repository using redhatRepo when std::familyof(host.os, "redhat")
 
