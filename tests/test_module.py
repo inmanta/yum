@@ -26,8 +26,8 @@ def test_module(project: Project) -> None:
 
 def test_input_validation_on_repository(project: Project):
     """
-    Verify that an exception is raised when the baseurl and the mirrorlist of
-    a Repository is set to null.
+    Verify that an exception is raised when the baseurl, mirrorlist and metalink attributes of
+    a Repository are set to null.
     """
     with pytest.raises(CompilerException) as excinfo:
         project.compile(
