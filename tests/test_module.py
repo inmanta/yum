@@ -85,11 +85,15 @@ gpgcheck=1
             result = f"{result}\nmirrorlist = http://mirror.com"
         if metalink:
             result = f"{result}\nmetalink = http://metalink.com"
-        return result + "\n" + """
+        return (
+            result
+            + "\n"
+            + """
 gpgkey = http://gpgkey.com
 metadata_expire = 7200
 skip_if_unavailable=0
         """.strip()
+        )
 
     file_instances = project.get_instances(fortype="std::File")
     assert len(file_instances) == 1
