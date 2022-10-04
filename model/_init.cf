@@ -18,7 +18,9 @@
 
 entity Repository:
     """
-        A yum repositoy
+        A yum repository.
+
+        Constraint: The baseurl and the mirrorlist attribute cannot be null at the same time.
     """
     string name
     bool gpgcheck=false
