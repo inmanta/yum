@@ -18,18 +18,29 @@
 
 entity Repository:
     """
-        A yum repositoy
+        A yum repository.
+
+        Constraint: The attributes baseurl, mirrorlist and metalink cannot be null at the same time.
     """
     string name
     bool gpgcheck=false
     bool enabled=true
-    string baseurl
+    string? baseurl=null
+    string? mirrorlist=null
+    string? metalink=null
     string gpgkey=""
     number metadata_expire=7200
     bool skip_if_unavailable=false
 end
 
 std::Host.repos [0:] -- Repository.host [1]
+
+implementation validateInput for Repository:
+   std::assert(
+       expression=self.baseurl != null or self.mirrorlist != null or self.metalink != null,
+       message="baseurl, mirrorlist and metalink cannot be null at the same time.",
+   )
+end
 
 implementation redhatRepo for Repository:
     repo = std::File(
@@ -43,5 +54,6 @@ implementation redhatRepo for Repository:
     )
 end
 
+implement Repository using validateInput
 implement Repository using redhatRepo when std::familyof(host.os, "redhat")
 
