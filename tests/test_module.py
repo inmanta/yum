@@ -15,6 +15,7 @@
 
     Contact: code@inmanta.com
 """
+
 import pytest
 from inmanta.ast import CompilerException
 from pytest_inmanta.plugin import Project
