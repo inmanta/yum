@@ -1,5 +1,8 @@
 # Changelog
 
+> :warning: The module in this repository (at https://github.com/inmanta/yum) is being phased out in favor of https://code.inmanta.com/solutions/modules/yum.  
+> This repository may only see patches applied to it.  Starting from version 1.0.0, the module will be available as a v2 only, published directly on pypi and the source will only be available in the fore-mentioned repository.
+
 ## v0.7.9 - ?
 
 
