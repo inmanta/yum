@@ -1,4 +1,4 @@
 author: Inmanta <code@inmanta.com>
 license: Apache 2.0
 name: yum
-version: 0.7.9
+version: 0.7.10.dev0
